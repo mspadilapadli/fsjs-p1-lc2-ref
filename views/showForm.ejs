@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+   <meta charset="utf-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <h5>Shirts & Tags
+   </h5>
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+</head>
+
+<body>
+   <div class="container">
+      <form action="<%=action%>" method="post">
+
+         <div class="mb-3">
+            <label>Name
+               <% if (error.name) { %>
+                  <small class="text-danger ">
+                     <%= error.name %>
+                  </small>
+                  <% } %>
+            </label>
+            <input type="text" class="form-control <%=error.name ? " is-invalid" : "" %>" name="name"
+
+            value="<%=shirt?.name || "" %>">
+         </div>
+
+         <div class=" mb-3">
+            <label>Type
+               <% if (error.type) { %>
+                  <small class="text-danger ">
+                     <%= error.type %>
+                  </small>
+                  <% } %>
+            </label>
+            <select class="form-select <%=error.name ? " is-invalid" : "" %>" name="type">
+               <option value="" hidden>
+                  Choose the type
+               </option>
+               <option value="Casual" <%=shirt?.type=="Casual" ? "selected" : "" %> >Casual</option>
+               <option value="Dress" <%=shirt?.type=="Dress" ? "selected" : "" %> >Dress</option>
+               <option value="T-shirt" <%=shirt?.type=="T-shirt" ? "selected" : "" %> >T-shirt</option>
+               <option value="Polo" <%=shirt?.type=="Polo" ? "selected" : "" %> >Polo</option>
+            </select>
+         </div>
+         <div class=" mb-3">
+            <label>Size
+               <% if (error.size) { %>
+                  <small class="text-danger ">
+                     <%= error.size %>
+                  </small>
+                  <% } %>
+            </label>
+            <select class="form-select <%=error.name ? " is-invalid" : "" %>" name="size">
+               <option value="" hidden>
+                  Choose the size
+               </option>
+               <option value="S" <%=shirt?.size=="S" ?"selected" : "" %>>S</option>
+               <option value="M" <%=shirt?.size=="M" ?"selected" : "" %>>M</option>
+               <option value="L" <%=shirt?.size=="L" ?"selected" : "" %>>L</option>
+               <option value="XL" <%=shirt?.size=="XL" ?"selected" : "" %>>XL</option>
+            </select>
+         </div>
+
+         <div class="mb-3">
+            <label>Stock
+               <% if (error.stock) { %>
+                  <small class="text-danger ">
+                     <%= error.stock %>
+                  </small>
+                  <% } %>
+            </label>
+            <input type="number" class="form-control <%=error.stock ? " is-invalid" : "" %>" name="stock"
+            value="<%=shirt?.stock || "" %>">
+         </div>
+
+
+         <div class=" mb-3">
+            <label class="form-label">Name tag
+               <% if (error.TagId) { %>
+                  <small class="text-danger ">
+                     <%= error.TagId %>
+                  </small>
+                  <% } %>
+            </label>
+            <select class="form-select <%=error.TagId ? " is-invalid" : "" %>" name="TagId">
+               <option value="" hidden>
+                  Select
+               </option>
+               <% dataTags.forEach((tag)=>{ %>
+                  <option value="<%= tag.id%>" <%=shirt?.TagId==tag.id ?"selected" : "" %>>
+                     <%=tag.name %>
+                  </option>
+                  <% }) %>
+            </select>
+         </div>
+
+
+         <button type="submit" class="btn btn-primary">
+            <%=isEdit ? "Update" : "Add" %>
+         </button>
+      </form>
+
+   </div>
+
+
+   </tbody>
+   </table>
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"></script>
+</body>
+
+</html>
