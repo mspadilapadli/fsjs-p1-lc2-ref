@@ -81,7 +81,30 @@ ON	s."TagId"  = t."id" `;
             throw error;
         }
     }
-
+    static async incStock(id) {
+        try {
+            const query = `update "Shirts" set "stock" = "stock" + 1 where id = ${id}`;
+            await pool.query(query);
+        } catch (error) {
+            throw error;
+        }
+    }
+    static async decStock(id) {
+        try {
+            const query = `update "Shirts" set "stock" = "stock" - 1 where id = ${id}`;
+            await pool.query(query);
+        } catch (error) {
+            throw error;
+        }
+    }
+    static async deleteShirt(id) {
+        try {
+            const query = `delete from "Shirts" where "id"=${id}`;
+            await pool.query(query);
+        } catch (error) {
+            throw error;
+        }
+    }
     static validate(payload) {
         try {
             const { name, type, size, stock, TagId } = payload;

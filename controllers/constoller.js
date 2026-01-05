@@ -76,6 +76,33 @@ class Controller {
             res.send(error);
         }
     }
+    static async increaseStock(req, res) {
+        try {
+            const { id } = req.params;
+            await Model.incStock(+id);
+            res.redirect("/");
+        } catch (error) {
+            res.send(error);
+        }
+    }
+    static async decreaseStock(req, res) {
+        try {
+            const { id } = req.params;
+            await Model.decStock(+id);
+            res.redirect("/");
+        } catch (error) {
+            res.send(error);
+        }
+    }
+    static async delShirt(req, res) {
+        try {
+            const { id } = req.params;
+            await Model.deleteShirt(+id);
+            res.redirect("/");
+        } catch (error) {
+            res.send(error);
+        }
+    }
 }
 
 module.exports = Controller;
